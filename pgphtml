@@ -3,7 +3,7 @@
 #
 # pgphtml -- a perl script to make PGP signed web-pages
 #
-# by Fabrizio Pivari <Pivari@geocities.com> 19 June 1997
+# by Fabrizio Pivari <Pivari@geocities.com> 19 September 1997
 #
 # Requires the pgp program
 #
@@ -11,7 +11,7 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 1.0.
+# This is version 1.1.
 #
 
 require "newgetopt.pl";
@@ -78,20 +78,31 @@ sub prepgp
    {
    print "$passwd\n";
    print " -->\n";
-      while (<STDIN>)
+   while (<STDIN>)
+      {
+      if (/-----BEGIN PGP SIGNED MESSAGE-----/)
          {
-      if (length > 126) {print STDERR "The maximum line length can not exceed 127 characters.\n";exit(1);};
+         print STDERR "pgphtml: $x is just PGP signed\n";
+         unlink($out);
+         exit(1);
+         }
+      if (length > 126)
+         {
+         print STDERR "pgphtml: The maximum line length can not exceed 127 characters.\n";
+         unlink($out);
+         exit(1);
+         }
 # If HTML files has lines beginning with hyphen (-) puts a space in front of the
 # hyphen (pgp alters lines beginning with a hyphen)
-         s/^-/ -/;
-         s/<BODY>/<BODY>\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/;
-         s/<body>/<body>\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/;
-         next if(/<\/BODY>/);
-         next if(/<\/body>/);
-         s/<\/HTML>/<PRE>/;
-         s/<\/html>/<PRE>/;
-         print $_;
-         }
+      s/^-/ -/;
+      s/<BODY>/<BODY>\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/;
+      s/<body>/<body>\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/;
+      next if(/<\/BODY>/);
+      next if(/<\/body>/);
+      s/<\/HTML>/<!PGPHTML written by Fabrizio Pivari (Pivari\@geocities.com)><PRE>/;
+      s/<\/html>/<!PGPHTML written by Fabrizio Pivari (Pivari\@geocities.com)><PRE>/;
+      print $_;
+      }
    }
 
 sub postpgp

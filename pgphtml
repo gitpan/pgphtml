@@ -11,7 +11,7 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 1.1.
+# This is version 1.2.
 #
 
 require "newgetopt.pl";
@@ -95,12 +95,9 @@ sub prepgp
 # If HTML files has lines beginning with hyphen (-) puts a space in front of the
 # hyphen (pgp alters lines beginning with a hyphen)
       s/^-/ -/;
-      s/<BODY>/<BODY>\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/;
-      s/<body>/<body>\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/;
-      next if(/<\/BODY>/);
-      next if(/<\/body>/);
-      s/<\/HTML>/<!PGPHTML written by Fabrizio Pivari (Pivari\@geocities.com)><PRE>/;
-      s/<\/html>/<!PGPHTML written by Fabrizio Pivari (Pivari\@geocities.com)><PRE>/;
+      s/<BODY.*>/$&\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/i;
+      next if(/<\/BODY>/i);
+      s/<\/HTML>/<!PGPHTML written by Fabrizio Pivari (Pivari\@geocities.com)><PRE>/i;
       print $_;
       }
    }

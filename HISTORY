@@ -4,3 +4,7 @@ First public realese
 Version 1.1
 Check if the files are just PGP signed
 Modifies to make simple unpgphtml
+
+Version 1.2
+Support for <BODY with its parameters
+Minor changes

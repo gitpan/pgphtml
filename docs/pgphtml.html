@@ -3,17 +3,17 @@
 
  -->
 <!-- PGPHTML: a perl script to make PGP signed web-pages designed by
-Fabrizio Pivari (Pivari@geocities.com) on 09/19/97>
-<HTML>
+Fabrizio Pivari (Pivari@geocities.com) on 09/19/97<HTML>
 <HEAD>
 <META Name="Author" Content="Fabrizio Pivari">
 <TITLE>PGPHTML: a perl script to make PGP signed web-pages</TITLE>
 </HEAD>
 
 <BODY BGCOLOR="#ffffff">
+<KBD>----BEGIN PGP SIGNED WEB-PAGE----</KBD>
 <H1>PGPHTML: a perl script to make PGP signed web-pages</H1>
 <H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
-<H4>version 1.1 1997/09/19</H4>
+<H4>version 1.2 1997/09/19</H4>
 
 <IMG SRC="pgp-lock-logo.gif" ALT="PGP logo">
 After I had read the nice page of <A HREF="mailto:EJNBell@pobox.com">Noel Bell</A>
@@ -50,13 +50,19 @@ Problems, at the moment:
 <UL>
 <LI>the script doesn't control if the files are HTML files
 <LI>it presumes that exists and is unique the tag &lt;/HTML&gt or
-&lt;/html&gt and &ltBODY&gt or &ltbody&gt
+&lt;/html&gt and &ltBODY or &ltbody
 </UL>
 
-<IMG SRC="new.gif" WIDTH=28 HEIGHT=11>What's new with version 1.1:
+What's new with version 1.1:
 <UL>
 <LI>Check if the files are just PGP signed
 <LI>Modifies to make simple unpgphtml
+</UL>
+
+<IMG SRC="new.gif" WIDTH=28 HEIGHT=11>What's new with version 1.2:
+<UL>
+<LI>Support for &ltBODY and its parameters
+<LI>Minor changes
 </UL>
 
 <H2>How to check the signature on this page
@@ -93,9 +99,9 @@ Enjoy it!
 Version: 2.6.3i
 Charset: noconv
 
-iQBVAwUBNA7xS4UYzlVs2FttAQGCrQH/YBgoxeU9TPe0oEXG0xV31VWzzFiAkpPX
-oe8KggAqExbV4AbYtbPBjEehUyzogh2ZVK6y+lipjV9GOkY6MycR+Q==
-=TVsr
+iQBVAwUBNB5I8YUYzlVs2FttAQGGoAH/XCBBb7rr1NqatrT/ofWqoq6TDBBSuBOZ
+KGklBp4kwLfMWig07e/q8Rakd+5VV/nlFNRdhkhY5poOlw8w/L+gew==
+=1JAZ
 -----END PGP SIGNATURE-----
 </PRE>
 </BODY>

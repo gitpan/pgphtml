@@ -1,58 +1,74 @@
-<!-- PGPHTML: a perl script to make PGP signed web-pages designed by
-Fabrizio Pivari (Pivari@geocities.com) on 03/22/98-->
-<HTML>
-<HEAD>
-<META Name="Author" Content="Fabrizio Pivari">
-<TITLE>PGPHTML: to make PGP signed web-page</TITLE>
-</HEAD>
+<!--
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-<BODY BGCOLOR="#ffffff">
-<H1>PGPHTML:   to make PGP signed web-pages</H1>
-<H1>UNPGPHTML: to return to the originals from PGP signed web-pages with PGPHTML
-</H1>
-<H2>by <A HREF="mailto:anface@geocities.com">ANFACE Software</A></H2>
-<H4>version 3.1 1998/06/18</H4>
 
-<TABLE>
-<TR>
-<TD>
-<TABLE>
-<TR>
-<TD><IMG SRC="pgp-lock-logo.gif" ALT="PGP logo"></TD>
-<TD>After I had read the nice page of
-<A HREF="mailto:EJNBell@pobox.com">Noel Bell</A>
-<A HREF="http://www.pobox.com/~ejnbell/pgp-www.html">PGP signed web-pages</A>
-I thought <EM>nice method but not very simple to use</EM>.
-For this reason I wrote the simple perl tool pgphtml to generate PGP signed
+ -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<meta Name="Author" Content="SANFACE Software">
+<meta Name="Keywords" Content="perl, crypt, encrypt, html, sign, freeware, sanface">
+<meta Name="Description" Content="perl script to make PGP or GPG signed web-page">
+<title>PGPHTML: to make PGP or GPG signed web-page</title>
+</head>
+
+<body bgcolor="#ffffff">
+<KBD>----BEGIN PGP SIGNED WEB-PAGE----</KBD>
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
+    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="iservices.html">IServices</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="freeware.html">Freeware</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="projects.html">Projects</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="webmark.html">Web Marketing</a></font></td>
+  </tr>
+</table>
+
+<h2>PGPHTML:   to make PGP or GPG signed web-pages</h2>
+<h2>UNPGPHTML: to return to the originals from PGP or GPG signed web-pages with PGPHTML
+</h2>
+<h3>by <a href="mailto:sanface@sanface.com">SANFACE Software</a></h3>
+<h4>version 4.0 2001/06/19</h4>
+
+<table>
+<tr>
+<td>
+<table>
+<tr>
+<td><img src="images/pgp-lock-logo.gif" alt="PGP logo"></td>
+<td>After we had read the nice page of
+<a href="mailto:EJNBell@pobox.com">Noel Bell</a>
+<a href="http://members.aol.com/EJNBell/pgp-www.html">PGP signed web-pages</a>
+We thought <i>nice method but not very simple to use</i>.
+For this reason we wrote the simple perl tool pgphtml to generate PGP or GPG signed
 web-pages based on Noel Bell methodology and unpgphtml to return to the
-originals from PGP signed web-pages with PGPHTML.
-From version 3.0 PGPHTML requires PERL 5.xxx.<P>
-<A HREF="pgphtml.tar.gz">Source Code</A><BR>
-<A HREF="pgphtml-2.0.tar.gz">Source Code: the last release that support
-PERL 4.xxx 2.0</A><BR>
-You can also find the source code at <A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
-CPAN authors/Fabrizio_Pivari/</A><P>
-</TD>
-</TR>
-</TABLE>
-</TD>
-<TD VALIGN=top ALIGN=center>
-<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/">
-<IMG SRC="anfacebig.gif" ALT="ANFACE Software" BORDER=0 WIDTH=130 HEIGHT=37></A><BR>
-<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/">
-<IMG SRC="anfacelogo.gif" ALT="ANFACE Software logo" BORDER=0 WIDTH=213 HEIGHT=164></A>
-</TD>
-</TR>
-</TABLE>
+originals from PGP or GPG signed web-pages with PGPHTML.
+<a href="pgphtml.tar.gz">Source Code</a><br>
+You can also find the source code at <a href="http://www.perl.org/CPAN/authors/id/S/SA/SANFACE/">
+CPAN authors/id/S/SA/SANFACE/</a><p>
+</td>
+</tr>
+</table>
+</td>
+<td valign=top align=center>
+<a href="http://www.amazon.com/exec/obidos/redirect-home?tag=sanfacesoftware"><img border="0" src="images/amazon_logo.gif" alt="In Association with amazon.com" width="126" height="32"><br>
+<a href="http://www.sanface.com"><img border="0" src="images/sanface_logo.gif" alt="SANFACE Software" width="150" height="150"></a>
+</td>
+</tr>
+</table>
 
-This is the syntax for pgphtml<BR>
+This is the syntax for pgphtml<br>
 
-<PRE>
+<pre>
 usage:
         pgphtml [-options ...] files
 
 where options include:
     -help                        print out this message
+    -gpg                         use GPG instead of PGP
     -verbose                     verbose
     -backup                      save the original files in .bak
     -passwd  yourpgppasswd
@@ -63,31 +79,35 @@ files:
 example:
     pgphtml *.html
     pgphtml -p "myfrase" *.htm
-</PRE>
+</pre>
 
 Problems, at the moment:
-<UL>
-<LI>it presumes that exists and is unique the tag &lt;/HTML&gt or
-&lt;/html&gt and &lt;BODY or &lt;body
-</UL>
-What's new with version 3.1:
-<UL>
-<LI>Added backup option</LI>
-<LI>New official location for pgphtml
-<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/pgphtml.html">
-http://www.geocities.com/CapeCanaveral/Hangar/4794/pgphtml.html</A></LI>
-</UL>
-<A HREF="pgphtmlH.html">History file</A><P>
+<ul>
+<li>it presumes that exists and is unique the tag &lt;/HTML&gt or
+&lt;/html&gt and &lt;BODY or &lt;body</li>
+</ul>
+What's new with version 4.0:
+<ul>
+<li><a href="http://www.gnupg.org/">GPG</a> support (-gpg) added by
+<a href="mailto:john@splange.freeserve.co.uk">John Arundel</a></li>
+<li>New official location for pgphtml
+<a href="http://www.sanface.com/pgphtml.html">
+http://www.sanface.com/pgphtml.html</a></li>
+<li>New CPAN location:
+<a href="http://www.perl.org/CPAN/authors/id/S/SA/SANFACE/">
+CPAN authors/id/S/SA/SANFACE/</a></li>
+</ul>
+<a href="pgphtmlH.html">History file</a><p>
 
-<H2>How to check the signature on this page
-[From <A HREF="http://www.pobox.com/~ejnbell/pgp-www.html">
-PGP signed web-pages</A>]</H2>
+<h3>How to check the signature on this page
+[From <a href="http://members.aol.com/EJNBell/pgp-www.html">
+PGP signed web-pages</A>]</h3>
 
-This page is digitally signed with <A HREF="http://www.pobox.com/~ejnbell/pgp.html">PGP</A>.
+This page is digitally signed with <a href="http://www.gnupg.org/">GPG</a>.
 You can check to see if it has been altered, by using
-<A HREF="http://www.pobox.com/~ejnbell/pgp.html">PGP</A>.
+<a href="http://www.gnupg.org/">GPG</a>.
 
-<P>
+<p>
 
 To do so, download or save this file to your hard drive.
 In Netscape, click on the word &QUOT;File&QUOT; on the menu-bar,
@@ -97,27 +117,41 @@ Save the file with a &QUOT;.htm&QUOT; or &QUOT;.html&QUOT; extension,
 such as "pgp-www.htm&QUOT;. Similar methods will apply to other
 browsers. Just make sure you save the file as html source code.
 
-<P>
+<p>
 
-If you haven't already got my <A HREF="pivari.txt"> PGP public
-key</A>, you will need to <A HREF="pivari.txt"> get it now</A>,
+If you haven't already got our <a href="sanface.txt"> PGP public
+key</a>, you will need to <a href="sanface.txt"> get it now</a>,
 and add it to your public keyring. Now, in the same directory
 that you have saved the file to, run &QUOT;PGP pgphtml.html&QUOT;
 and PGP should tell you that the signature from me is valid.
-This proves that the page has not been tampered with.<P>
+This proves that the page has not been tampered with.<p>
 
-<H2>Links around the world to this page</H2>
-<UL>
-<LI><A HREF="http://www.oasis.leo.org/perl/">The Perl Oasis archive</A></LI>
-<LI><A HREF="http://www.davecentral.com/">Dave Central</A></LI>
-<LI><A HREF="http://w3.tyenet.com/pgp/default.html">Mike's Privacy (PGP) Page</A></LI>
-<LI><A HREF="http://reference.perl.com/search.cgi">PERL Reference Page</A></LI>
-<LI><A HREF="http://www2.gvsu.edu/~parkerk/cyberpol/cyberpol.html">The Cyberpolis Page</A></LI>
-<LI><A HREF="http://www.kriptopolis.com/software/utils.html">
-Kript&oacute;polis: Criptografia, PGP, Seguridad en Internet</A> Spanish language</LI>
-<LI><A HREF="http://www.freecode.com">FreeCode, Free Internet Source Code</A></LI>
-</UL>
+Enjoy it!<p>
 
-Enjoy it!
+<font face="Tahoma" size="2"><i>pgphtml</i> is a trademark of <a href="http://www.sanface.com">SANFACE
+Software</a>© 2001.<br>
+Your technology glasses. We help you see your full potential.<br>
+</font><br>
+
+<table border="0" width="100%" bgcolor="#FFFF00">
+  <tr>
+    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
+    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="iservices.html">IServices</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="freeware.html">Freeware</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="projects.html">Projects</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="webmark.html">Web Marketing</a></font></td>
+  </tr>
+</table>
+<!PGPHTML written by Fabrizio Pivari (Pivari@geocities.com)><PRE>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.0.6 (GNU/Linux)
+Comment: Per informazioni si veda http://www.gnupg.org
+
+iD8DBQE7McMmaTCSKgDFaj8RAkClAJ9y7eVT+MkoE4WmxhYDjPK9eGXiVwCg6aY3
+cWJzLEUzT+HxAno8WtzjzDE=
+=PXJN
+-----END PGP SIGNATURE-----
+</PRE>
 </BODY>
 </HTML>

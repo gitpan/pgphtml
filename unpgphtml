@@ -3,22 +3,25 @@
 #
 # unpgphtml -- a perl script to unmake PGP signed web-pages
 #
-# by ANFACE Software <anface@geocities.com> 18 July 1998
+# by SANFACE Software <sanface@geocities.com> 19 June 2001
 #
-# Requires the pgp program
+# Requires PGP or GPG
+# GPG support added by John Arundel <john@splange.freeserve.co.uk>
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 3.1.
+# This is version 4.0.
 #
 # use strict;
 use Getopt::Long;
 
 my $help="";
 my $verbose="";
+my $gpg=0;
 do GetOptions("help"    => \$help,
+              "gpg"	=> \$gpg,
               "verbose" => \$verbose) || printusage() ;
 $help and printusage();
 
@@ -31,7 +34,11 @@ if (@ARGV)
       if ($x=~/\.htm$/i || $x=~/\.html$/i)
          {
          $verbose and print "Processing file: $x\n\n";
-         system("pgp < ${x} > ${out}");
+         if($gpg) {
+ 	     system("gpg -o ${out} ${x}");
+ 	 } else {
+ 	     system("pgp < ${x} > ${out}");
+ 	 }           open(TEMP, "$out")
          open(TEMP, "$out")
              || die("unpgphtml: couldn't open tempfile $out \n");
          open(HTML, ">$x")
@@ -60,6 +67,7 @@ usage:
 
 where options include:
     -help                        print out this message
+    -gpg                         use GPG instead of PGP
     -verbose                     verbose
 
 files:
@@ -68,7 +76,7 @@ files:
 If you want to know more about this tool, you might want
 to read the docs. They came together with unpgphtml!
 
-Home: http://www.geocities.com/CapeCanaveral//Hangar/4794/pgphtml.html
+Home: http://www.sanface.com/pgphtml.html
 
 USAGEDESC
     exit(1);

@@ -1,0 +1,41 @@
+After I had read the nice page of Noel Bell (mailto:EJNBell@pobox.com)
+"PGP signed web-pages" at http://www.pobox.com/~ejnbell/pgp-www.html, I thought
+"nice method but not very simple to use".
+For this reason I write a simple perl tool pgphtml to generate PGP or GPG signed
+web-pages
+
+This is the syntax
+
+usage:
+        pgphtml [-options ...] files
+
+where options include:
+    -help                        print out this message
+    -gpg                         use GPG instead of PGP
+    -verbose                     verbose
+    -backup                      save the original files in .bak
+    -passwd  yourpgppasswd
+
+files:
+    with files you can use metacharacters and relative and absolute path name
+    
+example:
+    pgphtml *.html
+    pgphtml -p "myfrase" *.htm
+
+If you want to know more about this tool, you might want
+to read the docs. They came together with pgphtml!
+
+Home: http://www.sanface.com/pgphtml.html
+
+Enjoy it!
+
+Send us your suggestions.
+
+SANFACE Software
+Your technology glasses. We help you see your full potential.
+mailto:sanface@sanface.com
+http://www.sanface.com
+WAP    http://www.sanface.com/wap/
+i-mode http://www.sanface.com/i/
+

@@ -3,15 +3,16 @@
 #
 # pgphtml -- a perl script to make PGP signed web-pages
 #
-# by ANFACE Software <anface@geocities.com> 18 July 1998
+# by SANFACE Software <sanface@geocities.com> 19 June 2001
 #
-# Requires the pgp program
+# Requires the PGP or GPG
+# GPG support added by John Arundel <john@splange.freeserve.co.uk>
 #
 # Copy, use, and redistribute freely, but don't take my name off it and
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 3.1.
+# This is version 4.0.
 #
 #use strict;
 use Getopt::Long;
@@ -20,10 +21,13 @@ my $help="";
 my $verbose="";
 my $passwd="";
 my $backup="";
+my $gpg=0;
+my $gpgflags = "";
 
 do GetOptions("passwd=s" => \$passwd,
              "help"      => \$help,
              "verbose"   => \$verbose,
+             "gpg"	 => \$gpg,
              "backup"    => \$backup) || printusage() ;  
 $help and printusage();
 
@@ -53,7 +57,12 @@ if (@ARGV)
          $ENV{'PGPPASSFD'} = '0'; # see pgp2.6.2 source code; this has the
                                   # effect of using the first line of the
                                   # input as the secret password.
-         system("pgp -fast < ${out} > ${pgp}");
+ 	 $gpgflags = "--passphrase-fd 0" if $passwd;
+          if($gpg) {
+ 	 	system("gpg --clearsign $gpgflags < ${out} > ${pgp}");
+ 	 } else {
+ 	 	system("pgp -fast < ${out} > ${pgp}");
+ 	 }
          $ENV{'PGPPASSFD'} = "";
 
          open(TEMP, ">$out")
@@ -92,7 +101,7 @@ sub prepgp
          unlink($out);
          exit(1);
          }
-      if (length > 127)
+      if (length > 127 && !$gpg)
          {
 
          print STDERR "pgphtml: The maximum line length can not exceed 
@@ -129,6 +138,7 @@ usage:
 
 where options include:
     -help                        print out this message
+    -gpg                         use GPG instead of PGP
     -verbose                     verbose
     -backup                      save the original files in .bak
     -passwd  yourpgppasswd
@@ -143,7 +153,7 @@ example:
 If you want to know more about this tool, you might want
 to read the docs. They came together with pgphtml!
 
-Home: http://www.geocities.com/CapeCanaveral/Hangar/4794/pgphtml.html
+Home: http://www.sanface.com/pgphtml.html
 
 USAGEDESC
     exit(1);

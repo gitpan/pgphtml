@@ -4,14 +4,14 @@ After I had read the nice page of Noel Bell (mailto:EJNBell@pobox.com)
 For this reason I write a simple perl tool pgphtml to generate PGP signed
 web-pages
 
-This is the sintax
-
+This is the syntax
 
 usage:
         pgphtml [-options ...] files
 
 where options include:
     -help                        print out this message
+    -verbose                     verbose
     -passwd  yourpgppasswd
 
 files:
@@ -26,13 +26,12 @@ to read the docs. They came together with pgphtml!
 
 Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pgphtml.html
 
-
-
-
 Enjoy it!
 
 Send me your suggestions.
 
-Fabrizio Pivari
-mailto:Pivari@geocities.com
-Home: http://www.geocities.com/CapeCanaveral/Lab/3469
+     _/_/_/_/ _/_/_/     Fabrizio Pivari
+    _/       _/    _/   mailto:pivari@hotmail.com
+   _/_/_/   _/_/_/     mailto:pivari@yahoo.com
+  _/       _/         mailto:pivari@geocities.com
+ _/       _/         http://www.geocities.com/CapeCanaveral/Lab/3469/

@@ -11,15 +11,17 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 1.3.
+# This is version 2.0.
 #
 # Modified for DOS Perl ver. 4
 # by Kelly Parker <parkerk@gvsu.edu> 28 September 1997
 #
 
 require "newgetopt.pl";
-do NGetOpt("passwd=s","help") || &printusage ;  
+do NGetOpt("passwd=s","help","verbose") || &printusage ;  
 if ($opt_help) {&printusage};
+$verbose=0;
+if ($opt_verbose) {$verbose=1}
 $passwd=$opt_passwd;
 
 $out = "pgphtml-out$$";
@@ -29,6 +31,7 @@ if (@ARGV)
       {
       $file = $x;
       $dir = &dirname($x);
+      if($verbose eq 1) {print "Processing file: $file\n\n";}
       open(TEMP, ">$out")
           || die("pgphtml: couldn't open tempfile $out \n");
       close(STDIN);
@@ -126,6 +129,7 @@ usage:
 
 where options include:
     -help                        print out this message
+    -verbose                     verbose
     -passwd  yourpgppasswd
 
 files:

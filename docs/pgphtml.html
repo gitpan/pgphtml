@@ -3,25 +3,35 @@
 
  -->
 <!-- PGPHTML: a perl script to make PGP signed web-pages designed by
-Fabrizio Pivari (Pivari@geocities.com) on 09/19/97<HTML>
+Fabrizio Pivari (Pivari@geocities.com) on 11/01/97<HTML>
 <HTML>
 <HEAD>
 <META Name="Author" Content="Fabrizio Pivari">
-<TITLE>PGPHTML: a perl script to make PGP signed web-pages</TITLE>
+<TITLE>PGPHTML: to make PGP signed web-page</TITLE>
 </HEAD>
 
 <BODY BGCOLOR="#ffffff">
 <KBD>----BEGIN PGP SIGNED WEB-PAGE----</KBD>
-<H1>PGPHTML: a perl script to make PGP signed web-pages</H1>
+<H1>PGPHTML:   to make PGP signed web-pages</H1>
+<H1>UNPGPHTML: to return to the originals from PGP signed web-pages with PGPHTML
+</H1>
 <H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
-<H4>version 1.3 1997/10/04</H4>
+<H4>version 2.0 1997/11/20</H4>
 
-<IMG SRC="pgp-lock-logo.gif" ALT="PGP logo">
-After I had read the nice page of <A HREF="mailto:EJNBell@pobox.com">Noel Bell</A>
+<TABLE>
+<TR>
+<TD><IMG SRC="pgp-lock-logo.gif" ALT="PGP logo"></TD>
+<TD>After I had read the nice page of
+<A HREF="mailto:EJNBell@pobox.com">Noel Bell</A>
 <A HREF="http://www.pobox.com/~ejnbell/pgp-www.html">PGP signed web-pages</A>
 I thought <EM>nice method but not very simple to use</EM>.
 For this reason I wrote the simple perl tool pgphtml to generate PGP signed
-web-pages based on Noel Bell methodology. It should be work with perl 4 and 5.<P>
+web-pages based on Noel Bell methodology and unpgphtml to return to the
+originals from PGP signed web-pages with PGPHTML.
+It should be work with perl 4 and 5.<P>
+</TD>
+</TR>
+</TABLE>
 
 <A HREF="pgphtml.tar.gz">Source Code</A><BR>
 <IMG SRC="new.gif" WIDTH=28 HEIGHT=11>You can also find the source code at
@@ -29,7 +39,7 @@ web-pages based on Noel Bell methodology. It should be work with perl 4 and 5.<P
 CPAN authors/Fabrizio_Pivari/</A><P>
 
 
-This is the sintax<BR>
+This is the syntax for pgphtml<BR>
 
 <PRE>
 usage:
@@ -37,6 +47,7 @@ usage:
 
 where options include:
     -help                        print out this message
+    -verbose                     verbose
     -passwd  yourpgppasswd
 
 files:
@@ -51,7 +62,7 @@ Problems, at the moment:
 <UL>
 <LI>the script doesn't control if the files are HTML files
 <LI>it presumes that exists and is unique the tag &lt;/HTML&gt or
-&lt;/html&gt and &ltBODY or &ltbody
+&lt;/html&gt and &lt;BODY or &lt;body
 </UL>
 
 What's new with version 1.1:
@@ -62,13 +73,19 @@ What's new with version 1.1:
 
 What's new with version 1.2:
 <UL>
-<LI>Support for &ltBODY and its parameters
+<LI>Support for &lt;BODY and its parameters
 <LI>Minor changes
 </UL>
 
-<IMG SRC="new.gif" WIDTH=28 HEIGHT=11>What's new with version 1.3:
+What's new with version 1.3:
 <UL>
 <LI>Modified for DOS Perl ver. 4 by <A HREF="mailto:parkerk@gvsu.edu">Kelly Parker</A>
+</UL>
+
+What's new with version 2.0:
+<UL>
+<LI>Now the package is pgphtml + unpgphtml
+<LI>Added verbose option
 </UL>
 
 <H2>How to check the signature on this page
@@ -98,6 +115,12 @@ that you have saved the file to, run &QUOT;PGP pgphtml.html&QUOT;
 and PGP should tell you that the signature from me is valid.
 This proves that the page has not been tampered with.<P>
 
+<H2><IMG SRC="new.gif" WIDTH=28 HEIGHT=11>Links around the world to this page</H2>
+<UL>
+<LI><A HREF="http://www.oasis.leo.org/perl/">The Perl Oasis archive</A></LI>
+<LI><A HREF="http://www.davecentral.com/3214.html">Dave Central</A></LI>
+</UL>
+
 Enjoy it!
 <!PGPHTML written by Fabrizio Pivari (Pivari@geocities.com)><PRE>
 
@@ -105,9 +128,9 @@ Enjoy it!
 Version: 2.6.3i
 Charset: noconv
 
-iQBVAwUBNDJAzYUYzlVs2FttAQH40AIAjP2Syq2eavadWM6fnZkF82Y3i7Cuvjps
-EMBuSx4LAtOpUHVMIt2rme7rlilleBDLEsZZ4S3yquwnPLEU3Ymxsw==
-=eaBt
+iQBVAwUBNHLUdIUYzlVs2FttAQGQAwH+PSWruRdWbgBP5gG3yTi11FOsQNEB8ob9
+7Vm51HVz/DqeG3bjTg0RYopstWqeILiNTwOwbUYaZZscLDRmGA1vng==
+=+OTR
 -----END PGP SIGNATURE-----
 </PRE>
 </BODY>

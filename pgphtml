@@ -3,7 +3,7 @@
 #
 # pgphtml -- a perl script to make PGP signed web-pages
 #
-# by SANFACE Software <sanface@geocities.com> 19 June 2001
+# by SANFACE Software <sanface@sanface.com> 19 June 2002
 #
 # Requires the PGP or GPG
 # GPG support added by John Arundel <john@splange.freeserve.co.uk>
@@ -12,10 +12,11 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 4.0.
+# This is version 4.1.
 #
 #use strict;
 use Getopt::Long;
+use File::DosGlob 'glob';
 
 my $help="";
 my $verbose="";
@@ -31,16 +32,29 @@ do GetOptions("passwd=s" => \$passwd,
              "backup"    => \$backup) || printusage() ;  
 $help and printusage();
 
+my @files;
 my $out = "pgphtml-out$$";
 my $x=""; my $pgp="";
 my $backupfile="";
 if (@ARGV)
    {
-   foreach $x (@ARGV)
+   if ($^O =~ /^MSWin32$/i && !$recursive) {
+     foreach $i (@ARGV) {
+       if($i=~/\*|\?/) {push @files,glob($i)}
+       else {push @files,$i}
+       }
+     }
+   else {@files = @ARGV}
+   foreach $x (@files)
       {
       if ($x=~/\.htm$/i || $x=~/\.html$/i)
          {
          $verbose and print "Processing file: $x\n\n";
+	 if($backup) {
+	    $backupfile=$x.".bak";
+	    open (BACK,">$backupfile")
+	      || die("pgphtml: couldn't open backup $backupfile\n");
+	    }
          open(TEMP, ">$out")
              || die("pgphtml: couldn't open tempfile $out \n");
          close(STDIN);
@@ -75,15 +89,15 @@ if (@ARGV)
             select(TEMP);
             postpgp();
             close(TEMP);
-            if ($backup) {$backupfile=$x.".bak";rename($x,$backupfile);}
-            else {unlink($x);}
+            unlink($x);
             if (!rename($out, $x))
                {print STDERR "pgphtml: couldn't replace $x\n";exit(1);}
+            unlink($out);
+            unlink($pgp);	
             }
+	 $backup and close(BACK);
          }
       else {print "Warning: the extension of the file isn't one of these .htm .HTM .html .HTML\n";}
-         unlink($out);
-         unlink($pgp);
       }
    }
 else {printusage();}
@@ -95,6 +109,7 @@ sub prepgp
    print " -->\n";
    while (<STDIN>)
       {
+      $backup and print BACK;
       if (/-----BEGIN PGP SIGNED MESSAGE-----/)
          {
          print STDERR "pgphtml: $x is just PGP signed\n";
@@ -116,10 +131,13 @@ sub prepgp
      s/<BODY.*>/$&\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/i;
 ##   changed in next line -- I like this better. (kp)
 ##      s/<BODY.*>/$&\n<PRE>----BEGIN PGP SIGNED DOCUMENT----<\/PRE>/i;
-      next if(/<\/BODY>/i);
-      s/<\/HTML>/<!PGPHTML written by Fabrizio Pivari (Pivari\@geocities.com)><PRE>/i;
-      print $_;
-      }
+     if (/<\/BODY>[ \t]*<\/HTML>/i) {
+       s/<\/BODY>[ \t]*<\/HTML>/<KBD><\/KBD>\n<pre>/i;
+       }
+     next if (/<\/BODY>/i);
+     s/<\/HTML>/<KBD><\/KBD><pre>/i;
+     print $_;
+     }
    }
 
 sub postpgp
@@ -127,7 +145,7 @@ sub postpgp
    {
    print "<!--\n";
    while (<STDIN>) {print $_;}
-   print qq!</PRE>\n</BODY>\n</HTML>\n!;
+   print qq!</pre>\n</body>\n</html>\n!;
    }
 
 sub printusage {

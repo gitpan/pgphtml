@@ -1,3 +1,9 @@
+Version 4.1 06/19/2002
+Correct a bug in unpgphtml (thanks "Ronald Kumon" <kumon@boulder.nist.gov>)
+Now metachars work also on Windows (e.g. pgphtml *.html)
+If your html is a valid HTML 4.01, the signed HTML will be a valid
+HTML 4.01 (we've tested this using http://validator.w3.org/)
+
 Verison 4.0 06/19/2001
 GPG support added by John Arundel <john@splange.freeserve.co.uk>
 

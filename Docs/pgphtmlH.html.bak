@@ -1,9 +1,4 @@
-<!--
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
 
-
- -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
@@ -11,23 +6,31 @@ Hash: SHA1
 <meta Name="Author" Content="SANFACE Software">
 <meta Name="Keywords" Content="perl, crypt, encrypt, html, sign, freeware, sanface">
 <meta Name="Description" Content="perl script to make PGP or GPG signed web-page">
-<title>History of PGPHTML 4.0</title>
+<title>History of PGPHTML 4.1</title>
 </head>
 
 <body bgcolor="#ffffff">
-<KBD>----BEGIN PGP SIGNED WEB-PAGE----</KBD>
 <table border="0" width="100%" bgcolor="#FFFF00">
   <tr>
-    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
-    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
+    <td width="15%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="iservices.html">IServices</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="freeware.html">Freeware</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="projects.html">Projects</a></font></td>
-    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="webmark.html">Web Marketing</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="partnerships.html">Partnerships</a></font></td>
   </tr>
 </table>
 
-<h1>History of PGPHTML 4.0</h1>
+<h1>History of PGPHTML 4.1</h1>
+
+Verison 4.1 06/19/2002:
+<ul>
+<li>Correct a bug in unpgphtml (thanks <a href="mailto:kumon@boulder.nist.gov">Ronald Kumon</a>)</li>
+<li>Now metachars work also on Windows (e.g. pgphtml *.html)</li>
+<li>If your html is a valid HTML 4.01, the signed HTML will be a valid
+HTML 4.01 (we've tested this using
+<a href="http://validator.w3.org/">http://validator.w3.org/</a>)</li>
+</ul>
 
 Verison 4.0 06/19/2001:
 <ul>
@@ -80,30 +83,19 @@ What's new with version 1.1:
 </ul>
 
 <font face="Tahoma" size="2"><i>pgphtml</i> is a trademark of <a href="http://www.sanface.com">SANFACE
-Software</a>© 2001.<br>
+Software</a>© 2002.<br>
 Your technology glasses. We help you see your full potential.<br>
 </font><br>
 
 <table border="0" width="100%" bgcolor="#FFFF00">
   <tr>
-    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
-    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
+    <td width="15%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="iservices.html">IServices</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="freeware.html">Freeware</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="projects.html">Projects</a></font></td>
-    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="webmark.html">Web Marketing</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="partnerships.html">Partnerships</a></font></td>
   </tr>
 </table>
-
-<!PGPHTML written by Fabrizio Pivari (Pivari@geocities.com)><PRE>
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.0.6 (GNU/Linux)
-Comment: Per informazioni si veda http://www.gnupg.org
-
-iD8DBQE7McNIaTCSKgDFaj8RAnkMAKCXIKvHJBxUPDMD49+lVLqvnbEvGwCg1Xtq
-g7hYNk81A5LCyPtSQvjTPCc=
-=4250
------END PGP SIGNATURE-----
-</PRE>
-</BODY>
-</HTML>
+</body>
+</html>

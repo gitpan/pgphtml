@@ -1,29 +1,20 @@
-<!--
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
-
-
- -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<html>
-<head>
-<meta Name="Author" Content="SANFACE Software">
-<meta Name="Keywords" Content="perl, crypt, encrypt, html, sign, freeware, sanface">
-<meta Name="Description" Content="perl script to make PGP or GPG signed web-page">
-<title>PGPHTML: to make PGP or GPG signed web-page</title>
-</head>
+<meta name="Author" content="SANFACE Software">
+<meta name="Keywords" content="perl, crypt, encrypt, html, sign, freeware, sanface">
+<meta name="Description" content="perl script to make PGP or GPG signed web-page"><title>PGPHTML: to make PGP or GPG signed web-page</title></head>
+
+
 
 <body bgcolor="#ffffff">
-<KBD>----BEGIN PGP SIGNED WEB-PAGE----</KBD>
 <table border="0" width="100%" bgcolor="#FFFF00">
   <tr>
-    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
-    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
+    <td width="15%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="iservices.html">IServices</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="freeware.html">Freeware</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="projects.html">Projects</a></font></td>
-    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="webmark.html">Web Marketing</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="partnerships.html">Partnerships</a></font></td>
   </tr>
 </table>
 
@@ -31,13 +22,13 @@ Hash: SHA1
 <h2>UNPGPHTML: to return to the originals from PGP or GPG signed web-pages with PGPHTML
 </h2>
 <h3>by <a href="mailto:sanface@sanface.com">SANFACE Software</a></h3>
-<h4>version 4.0 2001/06/19</h4>
+<h4>version 4.1 2002/06/19</h4>
 
 <table>
-<tr>
+<tbody><tr>
 <td>
 <table>
-<tr>
+<tbody><tr>
 <td><img src="images/pgp-lock-logo.gif" alt="PGP logo"></td>
 <td>After we had read the nice page of
 <a href="mailto:EJNBell@pobox.com">Noel Bell</a>
@@ -46,24 +37,27 @@ We thought <i>nice method but not very simple to use</i>.
 For this reason we wrote the simple perl tool pgphtml to generate PGP or GPG signed
 web-pages based on Noel Bell methodology and unpgphtml to return to the
 originals from PGP or GPG signed web-pages with PGPHTML.
-<a href="pgphtml.tar.gz">Source Code</a><br>
+<a href="http://www.sanface.com/pgphtml.tar.gz">Source Code</a><br>
 You can also find the source code at <a href="http://www.perl.org/CPAN/authors/id/S/SA/SANFACE/">
-CPAN authors/id/S/SA/SANFACE/</a><p>
+CPAN authors/id/S/SA/SANFACE/</a><br>
+We've tested that: if your html is a valid HTML (e.g. this page was a valid
+HTML 4.01 tested using
+<a href="http://validator.w3.org/">http://validator.w3.org/</a>), the signed
+HTML will be a valid HTML, too. (e.g. this page is a valid HTML 4.01)</td>
+</tr>
+</tbody></table>
+</td>
+<td valign="top" align="center">
+<a href="http://www.amazon.com/exec/obidos/redirect-home?tag=sanfacesoftware"><img border="0" src="images/amazon_logo.gif" alt="In Association with amazon.com" width="126" height="32"></a><br>
+<a href="http://www.sanface.com/"><img border="0" src="images/sanface_logo.gif" alt="SANFACE Software" width="150" height="150"></a><br>
+<a href="http://validator.w3.org/check/referer"><img src="images/valid-html401.png" height="31" width="88" align=right border="0" alt="Valid HTML 4.01!"></a>
 </td>
 </tr>
-</table>
-</td>
-<td valign=top align=center>
-<a href="http://www.amazon.com/exec/obidos/redirect-home?tag=sanfacesoftware"><img border="0" src="images/amazon_logo.gif" alt="In Association with amazon.com" width="126" height="32"><br>
-<a href="http://www.sanface.com"><img border="0" src="images/sanface_logo.gif" alt="SANFACE Software" width="150" height="150"></a>
-</td>
-</tr>
-</table>
+</tbody></table>
 
 This is the syntax for pgphtml<br>
 
-<pre>
-usage:
+<pre>usage:
         pgphtml [-options ...] files
 
 where options include:
@@ -83,8 +77,8 @@ example:
 
 Problems, at the moment:
 <ul>
-<li>it presumes that exists and is unique the tag &lt;/HTML&gt or
-&lt;/html&gt and &lt;BODY or &lt;body</li>
+<li>it presumes that exists and is unique the tag &lt;/HTML&gt; or
+&lt;/html&gt; and &lt;BODY or &lt;body</li>
 </ul>
 What's new with version 4.0:
 <ul>
@@ -99,9 +93,9 @@ CPAN authors/id/S/SA/SANFACE/</a></li>
 </ul>
 <a href="pgphtmlH.html">History file</a><p>
 
-<h3>How to check the signature on this page
+</p><h3>How to check the signature on this page
 [From <a href="http://members.aol.com/EJNBell/pgp-www.html">
-PGP signed web-pages</A>]</h3>
+PGP signed web-pages</a>]</h3>
 
 This page is digitally signed with <a href="http://www.gnupg.org/">GPG</a>.
 You can check to see if it has been altered, by using
@@ -110,48 +104,38 @@ You can check to see if it has been altered, by using
 <p>
 
 To do so, download or save this file to your hard drive.
-In Netscape, click on the word &QUOT;File&QUOT; on the menu-bar,
-then click on &QUOT;Save as&QUOT;. In the &QUOT;Save File as Type
-...&QUOT; box, make sure that &QUOT;Source (*.htm)&QUOT; is selected.
-Save the file with a &QUOT;.htm&QUOT; or &QUOT;.html&QUOT; extension,
-such as "pgp-www.htm&QUOT;. Similar methods will apply to other
+In Netscape, click on the word "File" on the menu-bar,
+then click on "Save as". In the "Save File as Type
+..." box, make sure that "Source (*.htm)" is selected.
+Save the file with a ".htm" or ".html" extension,
+such as "pgp-www.htm". Similar methods will apply to other
 browsers. Just make sure you save the file as html source code.
 
-<p>
+</p><p>
 
-If you haven't already got our <a href="sanface.txt"> PGP public
-key</a>, you will need to <a href="sanface.txt"> get it now</a>,
+If you haven't already got our <a href="http://www.sanface.com/sanface.txt"> PGP public
+key</a>, you will need to <a href="http://www.sanface.com/sanface.txt"> get it now</a>,
 and add it to your public keyring. Now, in the same directory
-that you have saved the file to, run &QUOT;PGP pgphtml.html&QUOT;
+that you have saved the file to, run "PGP pgphtml.html"
 and PGP should tell you that the signature from me is valid.
-This proves that the page has not been tampered with.<p>
+This proves that the page has not been tampered with.</p><p>
 
-Enjoy it!<p>
+Enjoy it!</p><p>
 
-<font face="Tahoma" size="2"><i>pgphtml</i> is a trademark of <a href="http://www.sanface.com">SANFACE
-Software</a>© 2001.<br>
+<font face="Tahoma" size="2"><i>pgphtml</i> is a trademark of <a href="http://www.sanface.com/">SANFACE
+Software</a>© 2002.<br>
 Your technology glasses. We help you see your full potential.<br>
 </font><br>
 
 <table border="0" width="100%" bgcolor="#FFFF00">
   <tr>
-    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
-    <td width="16%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
+    <td width="15%" align="center"><font face="Tahoma" size="2"><a href="news.html">News</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="shareware.html">Shareware</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="iservices.html">IServices</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="freeware.html">Freeware</a></font></td>
     <td width="17%" align="center"><font face="Tahoma" size="2"><a href="projects.html">Projects</a></font></td>
-    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="webmark.html">Web Marketing</a></font></td>
+    <td width="17%" align="center"><font face="Tahoma" size="2"><a href="partnerships.html">Partnerships</a></font></td>
   </tr>
 </table>
-<!PGPHTML written by Fabrizio Pivari (Pivari@geocities.com)><PRE>
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.0.6 (GNU/Linux)
-Comment: Per informazioni si veda http://www.gnupg.org
-
-iD8DBQE7McMmaTCSKgDFaj8RAkClAJ9y7eVT+MkoE4WmxhYDjPK9eGXiVwCg6aY3
-cWJzLEUzT+HxAno8WtzjzDE=
-=PXJN
------END PGP SIGNATURE-----
-</PRE>
-</BODY>
-</HTML>
+</body>
+</html>

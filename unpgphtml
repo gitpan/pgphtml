@@ -3,7 +3,7 @@
 #
 # unpgphtml -- a perl script to unmake PGP signed web-pages
 #
-# by SANFACE Software <sanface@geocities.com> 19 June 2001
+# by SANFACE Software <sanface@sanface.com> 19 June 2002
 #
 # Requires PGP or GPG
 # GPG support added by John Arundel <john@splange.freeserve.co.uk>
@@ -12,10 +12,11 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 4.0.
+# This is version 4.1.
 #
 # use strict;
 use Getopt::Long;
+use File::DosGlob 'glob';
 
 my $help="";
 my $verbose="";
@@ -27,9 +28,17 @@ $help and printusage();
 
 my $out = "unpgphtml-out$$";
 my $x="";
+my @files;
 if (@ARGV)
    {
-   foreach $x (@ARGV)
+   if ($^O =~ /^MSWin32$/i && !$recursive) {
+     foreach $i (@ARGV) {
+       if($i=~/\*|\?/) {push @files,glob($i)}
+       else {push @files,$i}
+       }
+     }
+   else {@files = @ARGV}
+   foreach $x (@files)
       {
       if ($x=~/\.htm$/i || $x=~/\.html$/i)
          {
@@ -38,7 +47,7 @@ if (@ARGV)
  	     system("gpg -o ${out} ${x}");
  	 } else {
  	     system("pgp < ${x} > ${out}");
- 	 }           open(TEMP, "$out")
+ 	 }
          open(TEMP, "$out")
              || die("unpgphtml: couldn't open tempfile $out \n");
          open(HTML, ">$x")
@@ -47,7 +56,7 @@ if (@ARGV)
             {
             s/ -->\n//;
             s/<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>\n//;
-            s/<!PGPHTML.*<PRE>/<\/BODY>\n<\/HTML>/;
+            s/<KBD>.*<pre>/<\/body>\n<\/html>/;
             print HTML $_;
             }
 

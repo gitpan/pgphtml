@@ -3,7 +3,7 @@
 #
 # unpgphtml -- a perl script to unmake PGP signed web-pages
 #
-# by Fabrizio Pivari <Pivari@geocities.com> 19 September 1997
+# by Fabrizio Pivari <Pivari@geocities.com> 22 March 1998
 #
 # Requires the pgp program
 #
@@ -11,49 +11,46 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 2.0.
+# This is version 3.0.
 #
+use strict;
+use Getopt::Long;
 
-require "newgetopt.pl";
-do GetOptions("help","verbose") || &printusage ;
-if ($opt_help) {&printusage};
-$verbose=0;
-if ($opt_verbose) {$verbose=1}
+my $help="";
+my $verbose="";
+do GetOptions("help"    => \$help,
+              "verbose" => \$verbose) || printusage() ;
+$help and printusage();
 
-$out = "unpgphtml-out$$";
+my $out = "unpgphtml-out$$";
+my $x="";
 if (@ARGV)
    {
    foreach $x (@ARGV)
       {
-      $file = $x;
-      $dir = &dirname($x);
-      if($verbose eq 1) {print "Processing file: $file\n\n";}
-      system("pgp < ${file} > ${out}");
-      open(TEMP, "$out")
-          || die("unpgphtml: couldn't open tempfile $out \n");
-      open(HTML, ">$file")
-          || die("unpgphtml: couldn't open $x\n");
-     while (<TEMP>)
+      if ($x=~/\.htm$/i || $x=~/\.html$/i)
          {
-         s/ -->\n//;
-         s/<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>\n//;
-         s/<!PGPHTML.*<PRE>/<\/BODY>\n<\/HTML>/;
-         print HTML $_;
+         $verbose and print "Processing file: $x\n\n";
+         system("pgp < ${x} > ${out}");
+         open(TEMP, "$out")
+             || die("unpgphtml: couldn't open tempfile $out \n");
+         open(HTML, ">$x")
+             || die("unpgphtml: couldn't open $x\n");
+         while (<TEMP>)
+            {
+            s/ -->\n//;
+            s/<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>\n//;
+            s/<!PGPHTML.*<PRE>/<\/BODY>\n<\/HTML>/;
+            print HTML $_;
+            }
+
+         close(TEMP);
          }
-
-      close(TEMP);
+      else {print "Warning: the extension of the file isn't one of these .htm .HTM .html .HTML\n";}
+      unlink($out);
       }
-   unlink($out);
    }
-
-sub dirname
-# return filename with the basename part stripped away
-   {
-   my($file) = @_;
-   if ($file =~ /\//) {$file =~ s:/[^/]*$::;}
-   else {$file = ".";}
-   return($file);
-   }
+else {printusage();}
 
 sub printusage {
     print <<USAGEDESC;

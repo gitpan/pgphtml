@@ -3,7 +3,7 @@
 #
 # pgphtml -- a perl script to make PGP signed web-pages
 #
-# by Fabrizio Pivari <Pivari@geocities.com> 19 September 1997
+# by Fabrizio Pivari <Pivari@geocities.com> 22 March 1998
 #
 # Requires the pgp program
 #
@@ -11,73 +11,69 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 2.0.
+# This is version 3.0.
 #
-# Modified for DOS Perl ver. 4
-# by Kelly Parker <parkerk@gvsu.edu> 28 September 1997
-#
+#use strict;
+use Getopt::Long;
 
-require "newgetopt.pl";
-do NGetOpt("passwd=s","help","verbose") || &printusage ;  
-if ($opt_help) {&printusage};
-$verbose=0;
-if ($opt_verbose) {$verbose=1}
-$passwd=$opt_passwd;
+my $help="";
+my $verbose="";
+my $passwd="";
 
-$out = "pgphtml-out$$";
+do GetOptions("passwd=s" => \$passwd,
+             "help"     => \$help,
+             "verbose"  => \$verbose) || printusage() ;  
+$help and printusage();
+
+my $out = "pgphtml-out$$";
+my $x=""; my $pgp="";
 if (@ARGV)
    {
    foreach $x (@ARGV)
       {
-      $file = $x;
-      $dir = &dirname($x);
-      if($verbose eq 1) {print "Processing file: $file\n\n";}
-      open(TEMP, ">$out")
-          || die("pgphtml: couldn't open tempfile $out \n");
-      close(STDIN);
-      if (!open(STDIN, "$file"))
-         {print STDERR "pgphtml: couldn't open $x for input\n";exit(1);}
-      else
+      if ($x=~/\.htm$/i || $x=~/\.html$/i)
          {
-         select(TEMP);
-         &prepgp;
-         close(TEMP);
-         }
-      $pgp = $out.".pgp";
+         $verbose and print "Processing file: $x\n\n";
+         open(TEMP, ">$out")
+             || die("pgphtml: couldn't open tempfile $out \n");
+         close(STDIN);
+         if (!open(STDIN, "$x"))
+            {print STDERR "pgphtml: couldn't open $x for input\n";exit(1);}
+         else
+            {
+            select(TEMP);
+            prepgp();
+            close(TEMP);
+            }
+         $pgp = $out.".pgp";
 
-      $ENV{'PGPPASSFD'} = '0'; # see pgp2.6.2 source code; this has the
-                               # effect of using the first line of the
-                               # input as the secret password.
-      system("pgp -fast < ${out} > ${pgp}");
-      $ENV{'PGPPASSFD'} = "";
+         $ENV{'PGPPASSFD'} = '0'; # see pgp2.6.2 source code; this has the
+                                  # effect of using the first line of the
+                                  # input as the secret password.
+         system("pgp -fast < ${out} > ${pgp}");
+         $ENV{'PGPPASSFD'} = "";
 
-      open(TEMP, ">$out")
-          || die("pgphtml: couldn't open tempfile $out \n");
-      close(STDIN);
-      if (!open(STDIN, "$pgp"))
-         {print STDERR "pgphtml: couldn't open $pgp for input\n";exit(1);}
-      else
-         {
-         select(TEMP);
-         &postpgp;
-         close(TEMP);
-         unlink($file);
-         if (!rename($out, $file))
-            {print STDERR "pgphtml: couldn't replace ${file}\n";exit(1);}
+         open(TEMP, ">$out")
+             || die("pgphtml: couldn't open tempfile $out \n");
+         close(STDIN);
+         if (!open(STDIN, "$pgp"))
+            {print STDERR "pgphtml: couldn't open $pgp for input\n";exit(1);}
+         else
+            {
+            select(TEMP);
+            postpgp();
+            close(TEMP);
+            unlink($x);
+            if (!rename($out, $x))
+               {print STDERR "pgphtml: couldn't replace $x\n";exit(1);}
+            }
          }
+      else {print "Warning: the extension of the file isn't one of these .htm .HTM .html .HTML\n";}
+         unlink($out);
+         unlink($pgp);
       }
-      unlink($out);
-      unlink($pgp);
    }
-
-sub dirname
-# return filename with the basename part stripped away
-   {
-   local($file) = @_;
-   if ($file =~ /\//) {$file =~ s:/[^/]*$::;}
-   else {$file = ".";}
-   return($file);
-   }
+else {printusage();}
 
 sub prepgp
 # Modifies HTML files before the execution of pgp command
@@ -103,7 +99,7 @@ sub prepgp
 
 # If HTML files has lines beginning with hyphen (-) puts a space in front of the
 # hyphen (pgp alters lines beginning with a hyphen)
-      s/^-/ -/;
+     s/^-/ -/;
      s/<BODY.*>/$&\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/i;
 ##   changed in next line -- I like this better. (kp)
 ##      s/<BODY.*>/$&\n<PRE>----BEGIN PGP SIGNED DOCUMENT----<\/PRE>/i;

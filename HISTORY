@@ -16,3 +16,9 @@ by Kelly Parker <parkerk@gvsu.edu> 28 September 1997
 Version 2.0
 Now the package is pgphtml + unpgphtml
 Added verbose option
+
+Version 3.0
+The code was rewrited in PERL 5.xxx mode
+Without parameters, the help is print
+Added a control on file extension: only .html .HTM .html .HTML extensions are
+accepted

@@ -1,0 +1,93 @@
+<!--
+-----BEGIN PGP SIGNED MESSAGE-----
+
+ -->
+<!-- PGPHTML: a perl script to make PGP signed web-pages designed by
+Fabrizio Pivari (Pivari@geocities.com) on 04/25/97 -->
+
+<HTML>
+<HEAD>
+<META Name="Author" Content="Fabrizio Pivari">
+<TITLE>PGPHTML: a perl script to make PGP signed web-pages</TITLE>
+</HEAD>
+
+<BODY>
+<KBD>----BEGIN PGP SIGNED WEB-PAGE----</KBD>
+<H1>PGPHTML: a perl script to make PGP signed web-pages</H1>
+<H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
+<H4>version 1.0 1997/07/03</H4>
+
+<IMG SRC="pgp-lock-logo.gif" ALT="PGP logo">
+After I had read the nice page of <A HREF="mailto:EJNBell@pobox.com">Noel Bell</A>
+<A HREF="http://www.pobox.com/~ejnbell/pgp-www.html">PGP signed web-pages</A>
+I thought <EM>nice method but not very simple to use</EM>.
+For this reason I write a simple perl tool pgphtml to generate PGP signed
+web-pages based on Noel Bell methodology.<P>
+
+<A HREF="pgphtml.tar.gz">Source Code</A><P>
+
+This is the sintax<BR>
+
+<PRE>
+usage:
+        pgphtml [-options ...] files
+
+where options include:
+    -help                        print out this message
+    -passwd  yourpgppasswd
+
+files:
+    with files you can use metacharacters with relative and absolute path name
+    
+example:
+    pgphtml *.html
+    pgphtml -p "myfrase" *.htm
+</PRE>
+
+Problems, at the moment:
+<UL>
+<LI>the script doesn't control if the file are HTML files and if they are just PGP signed
+<LI>it presumes that exists and is unique the tag &lt;/HTML&gt or
+&lt;/html&gt and &ltBODY&gt or &ltbody&gt
+</UL>
+
+- From <A HREF="http://www.pobox.com/~ejnbell/pgp-www.html">PGP signed web-pages</A><BR>
+<H2>How to check the signature on this page</H2>
+
+This page is digitally signed with <A HREF="http://www.pobox.com/~ejnbell/pgp.html">PGP</A>. 
+You can check to see if it has been altered, by using 
+<A HREF="http://www.pobox.com/~ejnbell/pgp.html">PGP</A>.
+
+<P>
+
+To do so, download or save this file to your hard drive. 
+In Netscape, click on the word &QUOT;File&QUOT; on the menu-bar, 
+then click on &QUOT;Save as&QUOT;. In the &QUOT;Save File as Type 
+...&QUOT; box, make sure that &QUOT;Source (*.htm)&QUOT; is selected.
+Save the file with a &QUOT;.htm&QUOT; or &QUOT;.html&QUOT; extension,
+such as "pgp-www.htm&QUOT;. Similar methods will apply to other 
+browsers. Just make sure you save the file as html source code.
+
+<P>
+
+If you haven't already got my <A HREF="pivari.txt"> PGP public 
+key</A>, you will need to <A HREF="pivari.txt"> get it now</A>, 
+and add it to your public keyring. Now, in the same directory 
+that you have saved the file to, run &QUOT;PGP pgphtml.html&QUOT; 
+and PGP should tell you that the signature from me is valid. 
+This proves that the page has not been tampered with.<P>
+
+Enjoy it!
+<PRE>
+
+-----BEGIN PGP SIGNATURE-----
+Version: 2.6.3i
+Charset: noconv
+
+iQBVAwUBM7vijoUYzlVs2FttAQGGfAH+Ps7mTk2cJzbVE+4JBoqwzgeE1IynraMZ
+GFt7jchfJolTpprytbhBK+I6XN2EszFkEJhy7qi2QIZeb25DRJc5fg==
+=U1b8
+-----END PGP SIGNATURE-----
+</PRE>
+</BODY>
+</HTML>

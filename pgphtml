@@ -1,0 +1,129 @@
+#!/usr/local/bin/perl
+# Works with Perl4 and Perl5
+#
+# pgphtml -- a perl script to make PGP signed web-pages
+#
+# by Fabrizio Pivari <Pivari@geocities.com> 19 June 1997
+#
+# Requires the pgp program
+#
+# Copy, use, and redistribute freely, but don't take my name off it and
+# clearly mark an altered version.  Fixes and enhancements cheerfully 
+# accepted.
+#
+# This is version 1.0.
+#
+
+require "newgetopt.pl";
+do GetOptions("passwd=s","help") || &printusage ;
+if ($opt_help) {&printusage};
+$passwd=$opt_passwd;
+
+$out = "pgphtml-out$$";
+if (@ARGV)
+   {
+   foreach $x (@ARGV)
+      {
+      $file = $x;
+      $dir = &dirname($x);
+      open(TEMP, ">$out")
+          || die("pgphtml: couldn't open tempfile $out \n");
+      close(STDIN);
+      if (!open(STDIN, "$file"))
+         {print STDERR "pgphtml: couldn't open $x for input\n";exit(1);}
+      else
+         {
+         select(TEMP);
+         &prepgp;
+         close(TEMP);
+         }
+      $pgp = $out.".pgp";
+
+      $ENV{'PGPPASSFD'} = '0'; # see pgp2.6.2 source code; this has the
+                               # effect of using the first line of the
+                               # input as the secret password.
+      system("pgp -fast < ${out} > ${pgp}");
+      $ENV{'PGPPASSFD'} = "";
+
+      open(TEMP, ">$out")
+          || die("pgphtml: couldn't open tempfile $out \n");
+      close(STDIN);
+      if (!open(STDIN, "$pgp"))
+         {print STDERR "pgphtml: couldn't open $pgp for input\n";exit(1);}
+      else
+         {
+         select(TEMP);
+         &postpgp;
+         close(TEMP);
+
+         if (!rename($out, $file))
+            {print STDERR "pgphtml: couldn't replace ${file}\n";exit(1);}
+         }
+      }
+      unlink($out);
+      unlink($pgp);
+   }
+
+sub dirname
+# return filename with the basename part stripped away
+   {
+   my($file) = @_;
+   if ($file =~ /\//) {$file =~ s:/[^/]*$::;}
+   else {$file = ".";}
+   return($file);
+   }
+
+sub prepgp
+# Modifies HTML files before the execution of pgp command
+   {
+   print "$passwd\n";
+   print " -->\n";
+      while (<STDIN>)
+         {
+      if (length > 126) {print STDERR "The maximum line length can not exceed 127 characters.\n";exit(1);};
+# If HTML files has lines beginning with hyphen (-) puts a space in front of the
+# hyphen (pgp alters lines beginning with a hyphen)
+         s/^-/ -/;
+         s/<BODY>/<BODY>\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/;
+         s/<body>/<body>\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/;
+         next if(/<\/BODY>/);
+         next if(/<\/body>/);
+         s/<\/HTML>/<PRE>/;
+         s/<\/html>/<PRE>/;
+         print $_;
+         }
+   }
+
+sub postpgp
+# Modifies HTML files after the execution of pgp command
+   {
+   print "<!--\n";
+   while (<STDIN>) {print $_;}
+   print qq!</PRE>\n</BODY>\n</HTML>!;
+   }
+
+sub printusage {
+    print <<USAGEDESC;
+
+usage:
+        pgphtml [-options ...] files
+
+where options include:
+    -help                        print out this message
+    -passwd  yourpgppasswd
+
+files:
+    with files you can use metacharacters and relative and absolute path name
+    
+example:
+    pgphtml *.html
+    pgphtml -p "myfrase" *.htm
+
+If you want to know more about this tool, you might want
+to read the docs. They came together with pgphtml!
+
+Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pgphtml.html
+
+USAGEDESC
+    exit(1);
+}

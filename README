@@ -12,6 +12,7 @@ usage:
 where options include:
     -help                        print out this message
     -verbose                     verbose
+    -backup                      save the original files in .bak
     -passwd  yourpgppasswd
 
 files:

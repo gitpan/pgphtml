@@ -3,7 +3,7 @@
 #
 # pgphtml -- a perl script to make PGP signed web-pages
 #
-# by Fabrizio Pivari <Pivari@geocities.com> 22 March 1998
+# by ANFACE Software <anface@geocities.com> 18 July 1998
 #
 # Requires the pgp program
 #
@@ -11,7 +11,7 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 3.0.
+# This is version 3.1.
 #
 #use strict;
 use Getopt::Long;
@@ -19,14 +19,17 @@ use Getopt::Long;
 my $help="";
 my $verbose="";
 my $passwd="";
+my $backup="";
 
 do GetOptions("passwd=s" => \$passwd,
-             "help"     => \$help,
-             "verbose"  => \$verbose) || printusage() ;  
+             "help"      => \$help,
+             "verbose"   => \$verbose,
+             "backup"    => \$backup) || printusage() ;  
 $help and printusage();
 
 my $out = "pgphtml-out$$";
 my $x=""; my $pgp="";
+my $backupfile="";
 if (@ARGV)
    {
    foreach $x (@ARGV)
@@ -63,7 +66,8 @@ if (@ARGV)
             select(TEMP);
             postpgp();
             close(TEMP);
-            unlink($x);
+            if ($backup) {$backupfile=$x.".bak";rename($x,$backupfile);}
+            else {unlink($x);}
             if (!rename($out, $x))
                {print STDERR "pgphtml: couldn't replace $x\n";exit(1);}
             }
@@ -114,7 +118,7 @@ sub postpgp
    {
    print "<!--\n";
    while (<STDIN>) {print $_;}
-   print qq!</PRE>\n</BODY>\n</HTML>!;
+   print qq!</PRE>\n</BODY>\n</HTML>\n!;
    }
 
 sub printusage {
@@ -126,6 +130,7 @@ usage:
 where options include:
     -help                        print out this message
     -verbose                     verbose
+    -backup                      save the original files in .bak
     -passwd  yourpgppasswd
 
 files:
@@ -138,7 +143,7 @@ example:
 If you want to know more about this tool, you might want
 to read the docs. They came together with pgphtml!
 
-Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pgphtml.html
+Home: http://www.geocities.com/CapeCanaveral/Hangar/4794/pgphtml.html
 
 USAGEDESC
     exit(1);

@@ -3,7 +3,7 @@
 #
 # unpgphtml -- a perl script to unmake PGP signed web-pages
 #
-# by Fabrizio Pivari <Pivari@geocities.com> 22 March 1998
+# by ANFACE Software <anface@geocities.com> 18 July 1998
 #
 # Requires the pgp program
 #
@@ -11,9 +11,9 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 3.0.
+# This is version 3.1.
 #
-use strict;
+# use strict;
 use Getopt::Long;
 
 my $help="";
@@ -68,7 +68,7 @@ files:
 If you want to know more about this tool, you might want
 to read the docs. They came together with unpgphtml!
 
-Home: http://www.geocities.com/CapeCanaveral/Lab/3469/pgphtml.html
+Home: http://www.geocities.com/CapeCanaveral//Hangar/4794/pgphtml.html
 
 USAGEDESC
     exit(1);

@@ -1,9 +1,5 @@
-<!--
------BEGIN PGP SIGNED MESSAGE-----
-
- -->
 <!-- PGPHTML: a perl script to make PGP signed web-pages designed by
-Fabrizio Pivari (Pivari@geocities.com) on 03/15/98>
+Fabrizio Pivari (Pivari@geocities.com) on 03/22/98-->
 <HTML>
 <HEAD>
 <META Name="Author" Content="Fabrizio Pivari">
@@ -11,12 +7,11 @@ Fabrizio Pivari (Pivari@geocities.com) on 03/15/98>
 </HEAD>
 
 <BODY BGCOLOR="#ffffff">
-<KBD>----BEGIN PGP SIGNED WEB-PAGE----</KBD>
 <H1>PGPHTML:   to make PGP signed web-pages</H1>
 <H1>UNPGPHTML: to return to the originals from PGP signed web-pages with PGPHTML
 </H1>
-<H2>by <A HREF="mailto:Pivari@geocities.com">Fabrizio Pivari</A></H2>
-<H4>version 3.0 1998/03/15</H4>
+<H2>by <A HREF="mailto:anface@geocities.com">ANFACE Software</A></H2>
+<H4>version 3.1 1998/06/18</H4>
 
 <TABLE>
 <TR>
@@ -31,12 +26,11 @@ I thought <EM>nice method but not very simple to use</EM>.
 For this reason I wrote the simple perl tool pgphtml to generate PGP signed
 web-pages based on Noel Bell methodology and unpgphtml to return to the
 originals from PGP signed web-pages with PGPHTML.
-- From version 3.0 PGPHTML requires PERL 5.xxx.<P>
+From version 3.0 PGPHTML requires PERL 5.xxx.<P>
 <A HREF="pgphtml.tar.gz">Source Code</A><BR>
 <A HREF="pgphtml-2.0.tar.gz">Source Code: the last release that support
 PERL 4.xxx 2.0</A><BR>
-<IMG SRC="new.gif" WIDTH=28 HEIGHT=11>You can also find the source code at
-<A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
+You can also find the source code at <A HREF="http://www.perl.org/CPAN/authors/Fabrizio_Pivari">
 CPAN authors/Fabrizio_Pivari/</A><P>
 </TD>
 </TR>
@@ -60,6 +54,7 @@ usage:
 where options include:
     -help                        print out this message
     -verbose                     verbose
+    -backup                      save the original files in .bak
     -passwd  yourpgppasswd
 
 files:
@@ -75,12 +70,12 @@ Problems, at the moment:
 <LI>it presumes that exists and is unique the tag &lt;/HTML&gt or
 &lt;/html&gt and &lt;BODY or &lt;body
 </UL>
-What's new with version 3.0:
+What's new with version 3.1:
 <UL>
-<LI>The code was rewrited in PERL 5.xxx mode</LI>
-<LI>Without parameters, the help is print</LI>
-<LI>Added a control on file extension: only .html .HTM .html .HTML extensions
-are accepted</LI>
+<LI>Added backup option</LI>
+<LI>New official location for pgphtml
+<A HREF="http://www.geocities.com/CapeCanaveral/Hangar/4794/pgphtml.html">
+http://www.geocities.com/CapeCanaveral/Hangar/4794/pgphtml.html</A></LI>
 </UL>
 <A HREF="pgphtmlH.html">History file</A><P>
 
@@ -111,29 +106,18 @@ that you have saved the file to, run &QUOT;PGP pgphtml.html&QUOT;
 and PGP should tell you that the signature from me is valid.
 This proves that the page has not been tampered with.<P>
 
-<H2><IMG SRC="new.gif" WIDTH=28 HEIGHT=11>Links around the world to this page</H2>
+<H2>Links around the world to this page</H2>
 <UL>
 <LI><A HREF="http://www.oasis.leo.org/perl/">The Perl Oasis archive</A></LI>
 <LI><A HREF="http://www.davecentral.com/">Dave Central</A></LI>
-<LI><A HREF="http://w3.tyenet.com/pgp/mtb.privacy.html">Mike's Privacy Page</A></LI>
+<LI><A HREF="http://w3.tyenet.com/pgp/default.html">Mike's Privacy (PGP) Page</A></LI>
 <LI><A HREF="http://reference.perl.com/search.cgi">PERL Reference Page</A></LI>
 <LI><A HREF="http://www2.gvsu.edu/~parkerk/cyberpol/cyberpol.html">The Cyberpolis Page</A></LI>
-<LI><A HREF="http://www.kriptopolis.com/cr_src.html">
-Kript&oacute;polis: Algoritmos, Fuentes y Programas</A> Spanish language</LI>
+<LI><A HREF="http://www.kriptopolis.com/software/utils.html">
+Kript&oacute;polis: Criptografia, PGP, Seguridad en Internet</A> Spanish language</LI>
 <LI><A HREF="http://www.freecode.com">FreeCode, Free Internet Source Code</A></LI>
 </UL>
 
 Enjoy it!
-<!PGPHTML written by Fabrizio Pivari (Pivari@geocities.com)><PRE>
-
------BEGIN PGP SIGNATURE-----
-Version: 2.6.3i
-Charset: noconv
-
-iQBVAwUBNQka84UYzlVs2FttAQHRFQH+KCbvBMY8QELRoYgPBAzk9zV3SEbNmMmD
-9EYiZKOeVKMV27Wxp+KUxe4dE7amif/LolOOEFYYAKNqq1eR1g8fLg==
-=jt/S
------END PGP SIGNATURE-----
-</PRE>
 </BODY>
 </HTML>

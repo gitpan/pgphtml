@@ -11,11 +11,14 @@
 # clearly mark an altered version.  Fixes and enhancements cheerfully 
 # accepted.
 #
-# This is version 1.2.
+# This is version 1.3.
+#
+# Modified for DOS Perl ver. 4
+# by Kelly Parker <parkerk@gvsu.edu> 28 September 1997
 #
 
 require "newgetopt.pl";
-do GetOptions("passwd=s","help") || &printusage ;
+do NGetOpt("passwd=s","help") || &printusage ;  
 if ($opt_help) {&printusage};
 $passwd=$opt_passwd;
 
@@ -55,7 +58,7 @@ if (@ARGV)
          select(TEMP);
          &postpgp;
          close(TEMP);
-
+         unlink($file);
          if (!rename($out, $file))
             {print STDERR "pgphtml: couldn't replace ${file}\n";exit(1);}
          }
@@ -67,7 +70,7 @@ if (@ARGV)
 sub dirname
 # return filename with the basename part stripped away
    {
-   my($file) = @_;
+   local($file) = @_;
    if ($file =~ /\//) {$file =~ s:/[^/]*$::;}
    else {$file = ".";}
    return($file);
@@ -86,16 +89,21 @@ sub prepgp
          unlink($out);
          exit(1);
          }
-      if (length > 126)
+      if (length > 127)
          {
-         print STDERR "pgphtml: The maximum line length can not exceed 127 characters.\n";
+
+         print STDERR "pgphtml: The maximum line length can not exceed 
+                       127 characters.\n";
          unlink($out);
          exit(1);
          }
+
 # If HTML files has lines beginning with hyphen (-) puts a space in front of the
 # hyphen (pgp alters lines beginning with a hyphen)
       s/^-/ -/;
-      s/<BODY.*>/$&\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/i;
+     s/<BODY.*>/$&\n<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>/i;
+##   changed in next line -- I like this better. (kp)
+##      s/<BODY.*>/$&\n<PRE>----BEGIN PGP SIGNED DOCUMENT----<\/PRE>/i;
       next if(/<\/BODY>/i);
       s/<\/HTML>/<!PGPHTML written by Fabrizio Pivari (Pivari\@geocities.com)><PRE>/i;
       print $_;

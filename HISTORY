@@ -8,3 +8,7 @@ Modifies to make simple unpgphtml
 Version 1.2
 Support for <BODY with its parameters
 Minor changes
+
+Version 1.3
+Modified for DOS Perl ver. 4
+by Kelly Parker <parkerk@gvsu.edu> 28 September 1997
